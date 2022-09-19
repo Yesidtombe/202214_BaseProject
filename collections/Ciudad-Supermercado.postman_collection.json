@@ -1,0 +1,853 @@
+{
+	"info": {
+		"_postman_id": "1209d1b1-fca7-48f8-b4e3-0b7aeda6c918",
+		"name": "Ciudad-Supermercado",
+		"description": "Pruebas para asociacion Ciudad-Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19677878"
+	},
+	"item": [
+		{
+			"name": "Crear una ciudad valida 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"ciudad_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"nombre\": \"Buenos aires\",\r\n   \"pais\": \"Argentina\",\r\n   \"habitantes\": 123456\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/cities",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities"
+					]
+				},
+				"description": "Request para crear una nueva ciudad con la información dada."
+			},
+			"response": [
+				{
+					"name": "Crear una ciudad valida",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"nombre\": \"Buenos aires\",\r\n   \"pais\": \"Argentina\",\r\n   \"habitantes\": 123456\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"784da702-8e45-4d1a-bb2f-695b4ba11094\",\r\n    \"nombre\": \"Buenos aires\",\r\n    \"pais\": \"Argentina\",\r\n    \"habitantes\": 123456\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un supermercado valido 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercado_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				},
+				"description": "Request para crear un nuevo supermercado"
+			},
+			"response": [
+				{
+					"name": "Crear un supermercado valido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\",\r\n    \"id\": \"349e3f43-9b4a-4039-a0c3-b25834e594f7\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un supermercado valido 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercado_id_2\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Supertiendas Falabella\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				},
+				"description": "Request para crear un nuevo supermercado"
+			},
+			"response": [
+				{
+					"name": "Crear un supermercado valido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\",\r\n    \"id\": \"349e3f43-9b4a-4039-a0c3-b25834e594f7\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Asociar un nuevo supermercado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets",
+						"{{supermercado_id}}"
+					]
+				},
+				"description": "Request para asociar un supermercado con ID dado a una ciudad con ID dado"
+			},
+			"response": [
+				{
+					"name": "Asociar un nuevo supermercado a una ciudad",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets",
+								"{{supermercado_id}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"7b7f6923-383d-4d39-800f-e4b5f05aa1bd\",\r\n    \"nombre\": \"Buenos aires\",\r\n    \"pais\": \"Argentina\",\r\n    \"habitantes\": 123456,\r\n    \"supermercados\": [\r\n        {\r\n            \"id\": \"4c0fa24c-c906-4867-843d-549ddd5d7d4d\",\r\n            \"nombre\": \"Supertiendas Olimpica\",\r\n            \"longitud\": \"-154.0226\",\r\n            \"latitud\": \"2.68452\",\r\n            \"paginaweb\": \"uniandes.edu.co\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Asociar un supermercado que no existe a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Request que intenta asociar un supermercado que no existe a una ciudad con ID dado"
+			},
+			"response": [
+				{
+					"name": "Asociar un supermercado que no existe a una ciudad",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los supermercados que pertenecen a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets"
+					]
+				},
+				"description": "Request para obtener todos los supermercados de una ciudad con ID dado"
+			},
+			"response": [
+				{
+					"name": "Obtener todos los supermercados que pertenecen a una ciudad",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"4c0fa24c-c906-4867-843d-549ddd5d7d4d\",\r\n        \"nombre\": \"Supertiendas Olimpica\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un supermercado asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets",
+						"{{supermercado_id}}"
+					]
+				},
+				"description": "Request para obtener un supermercado asociado a una ciudad con ID dado."
+			},
+			"response": [
+				{
+					"name": "Obtener un supermercado asociado a una ciudad",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets",
+								"{{supermercado_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"4c0fa24c-c906-4867-843d-549ddd5d7d4d\",\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un supermercado que no esta asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no está asociado a la ciudad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id_2}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets",
+						"{{supermercado_id_2}}"
+					]
+				},
+				"description": "Request para obtener un supermercado con ID dado que no está asociado a una ciudad con ID dado"
+			},
+			"response": [
+				{
+					"name": "Obtener un supermercado que no esta asociado a una ciudad",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id_2}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets",
+								"{{supermercado_id_2}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los supermercados que estan asociados a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"{{supermercado_id_2}}\",\r\n        \"nombre\": \"Supertiendas Olimpica\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets"
+					]
+				},
+				"description": "Request para actualizar los supermercados que están asociados a una ciudad con ID dado."
+			},
+			"response": [
+				{
+					"name": "Actualizar los supermercados que estan asociados a una ciudad",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"{{supermercado_id_2}}\",\r\n        \"nombre\": \"Supertiendas Olimpica\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"7b7f6923-383d-4d39-800f-e4b5f05aa1bd\",\r\n    \"nombre\": \"Buenos aires\",\r\n    \"pais\": \"Argentina\",\r\n    \"habitantes\": 123456,\r\n    \"supermercados\": [\r\n        {\r\n            \"id\": \"67784ffd-11b0-42b6-a561-9bd7529efb43\",\r\n            \"nombre\": \"Supertiendas Olimpica\",\r\n            \"longitud\": \"-154.0226\",\r\n            \"latitud\": \"2.68452\",\r\n            \"paginaweb\": \"uniandes.edu.co\"\r\n        }\r\n    ]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar los supermercados asociados a una ciudad, con un supermercado inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"00000000-0000-0000-0000-000000000000\",\r\n        \"nombre\": \"Supertiendas Exito\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    },\r\n    {\r\n        \"id\": \"c752cb62-d1a6-4863-9f16-2081c014b8b5\",\r\n        \"nombre\": \"Supertiendas Alkosto\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets"
+					]
+				},
+				"description": "Request para actualizar los supermercados dados con IDs a una ciudad, pero con un ID que no existe."
+			},
+			"response": [
+				{
+					"name": "Actualizar los supermercados asociados a una ciudad, con un supermercado inexistente",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"id\": \"{{supermercado_id}}\",\r\n        \"nombre\": \"Supertiendas Exito\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    },\r\n    {\r\n        \"id\": \"c752cb62-d1a6-4863-9f16-2081c014b8b5\",\r\n        \"nombre\": \"Supertiendas Alkosto\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un supermercado asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id_2}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets",
+						"{{supermercado_id_2}}"
+					]
+				},
+				"description": "Request para eliminar un supermercado con ID dado asociado a una ciudad con ID dado."
+			},
+			"response": [
+				{
+					"name": "Eliminar un supermercado asociado a una ciudad",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id_2}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets",
+								"{{supermercado_id_2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar un supermercado que no estaba previamente asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no está asociado a la ciudad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"cities",
+						"{{ciudad_id}}",
+						"supermarkets",
+						"{{supermercado_id}}"
+					]
+				},
+				"description": "Request para eliminar un supermercado con ID dado que no estaba asociado a una ciudad con ID dado."
+			},
+			"response": [
+				{
+					"name": "Eliminar un supermercado que no estaba previamente asociado a una ciudad",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/cities/{{ciudad_id}}/supermarkets/{{supermercado_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"cities",
+								"{{ciudad_id}}",
+								"supermarkets",
+								"{{supermercado_id}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"El supermercado con el id dado no está asociado a la ciudad\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

@@ -565,7 +565,7 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
 					"raw": "{{base_url}}/cities/00000000-0000-0000-0000-000000000000",
@@ -576,13 +576,14 @@
 						"cities",
 						"00000000-0000-0000-0000-000000000000"
 					]
-				}
+				},
+				"description": "Request para eliminar una ciudad con ID dado que no existe en base de datos."
 			},
 			"response": [
 				{
 					"name": "Eliminar una ciudad con un ID que no existe",
 					"originalRequest": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
 						"url": {
 							"raw": "{{base_url}}/cities/00000000-0000-0000-0000-000000000000",
