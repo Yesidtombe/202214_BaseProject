@@ -1,0 +1,636 @@
+{
+	"info": {
+		"_postman_id": "a769f772-35b7-437a-8e72-3fa5e755f790",
+		"name": "Supermercado",
+		"description": "Pruebas para el recurso Supermercado",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19677878"
+	},
+	"item": [
+		{
+			"name": "Crear un supermercado valido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"supermercado_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				},
+				"description": "Request para crear un nuevo supermercado"
+			},
+			"response": [
+				{
+					"name": "Crear un supermercado valido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\",\r\n    \"id\": \"349e3f43-9b4a-4039-a0c3-b25834e594f7\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Crear un supermercado invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El nombre del supermercado tiene 10 o menos caracteres\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Jumbo\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				},
+				"description": "Request para crear un supermercado invalido, que no cumple con las reglas de negocio"
+			},
+			"response": [
+				{
+					"name": "Crear un supermercado invalido",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Jumbo\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 412,\r\n    \"message\": \"El nombre del supermercado tiene 10 o menos caracteres\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todos los supermercados",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of supermercados > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermarkets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets"
+					]
+				},
+				"description": "Request para obtener todos los supermercados"
+			},
+			"response": [
+				{
+					"name": "Obtener todos los supermercados",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/supermarkets",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": \"349e3f43-9b4a-4039-a0c3-b25834e594f7\",\r\n        \"nombre\": \"Supertiendas Olimpica\",\r\n        \"longitud\": \"-154.0226\",\r\n        \"latitud\": \"2.68452\",\r\n        \"paginaweb\": \"uniandes.edu.co\",\r\n        \"ciudades\": []\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener un supermercado por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermarkets/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermercado_id}}"
+					]
+				},
+				"description": "Request para obtener un supermercado por un ID dado"
+			},
+			"response": [
+				{
+					"name": "Obtener un supermercado por ID",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/supermarkets/{{supermercado_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermercado_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"cde2ceb2-3fa7-4636-9be0-c101ca3767c9\",\r\n    \"nombre\": \"Supertiendas Olimpica\",\r\n    \"longitud\": \"-154.0226\",\r\n    \"latitud\": \"2.68452\",\r\n    \"paginaweb\": \"uniandes.edu.co\",\r\n    \"ciudades\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener un supermercado por un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Request para obtener un supermercado con un ID que no existe."
+			},
+			"response": [
+				{
+					"name": "Obtener un supermercado por un ID que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un supermercado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Almacenes Jumbo\",\r\n    \"longitud\": \"-174.0226\",\r\n    \"latitud\": \"2.41852\",\r\n    \"paginaweb\": \"unicauca.edu.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermarkets/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermercado_id}}"
+					]
+				},
+				"description": "Request para actualizar un supermercado con nueva información."
+			},
+			"response": [
+				{
+					"name": "Actualizar un supermercado",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Almacenes Jumbo\",\r\n    \"longitud\": \"-174.0226\",\r\n    \"latitud\": \"2.41852\",\r\n    \"paginaweb\": \"unicauca.edu.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/supermarkets/{{supermercado_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermercado_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"cde2ceb2-3fa7-4636-9be0-c101ca3767c9\",\r\n    \"nombre\": \"Almacenes Jumbo\",\r\n    \"longitud\": \"-174.0226\",\r\n    \"latitud\": \"2.41852\",\r\n    \"paginaweb\": \"unicauca.edu.co\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Actualizar un supermercado con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Almacenes Exito\",\r\n    \"longitud\": \"-114.0226\",\r\n    \"latitud\": \"3.67452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Request para actualizar un supermercado con un ID que no existe."
+			},
+			"response": [
+				{
+					"name": "Actualizar un supermercado con un ID que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Almacenes Exito\",\r\n    \"longitud\": \"-114.0226\",\r\n    \"latitud\": \"3.67452\",\r\n    \"paginaweb\": \"uniandes.edu.co\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Eliminar un supermercado por su ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermarkets/{{supermercado_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets",
+						"{{supermercado_id}}"
+					]
+				},
+				"description": "Request para eliminar un supermercado con un ID dado"
+			},
+			"response": [
+				{
+					"name": "Eliminar un supermercado por su ID",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/supermarkets/{{supermercado_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets",
+								"{{supermercado_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Eliminar un supermercado con un ID que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado con el id dado no fue encontrado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/supermarkets/00000000-0000-0000-0000-000000000000",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"supermarkets",
+						"00000000-0000-0000-0000-000000000000"
+					]
+				},
+				"description": "Request que intenta eliminar un supermercado con un ID que no existe."
+			},
+			"response": [
+				{
+					"name": "Eliminar un supermercado con un ID que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/supermarkets/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"supermarkets",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"statusCode\": 404,\r\n    \"message\": \"El supermercado con el id dado no fue encontrado\"\r\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}
